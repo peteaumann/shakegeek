@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Save Playlist{% endblock %}
+{% block head %}Save Playlist{% endblock %}
+{% block content %}
+Linklist = {{ linklist }}
+<form id="add-form" method="post" action=".">
+	{{ form.as_p }}
+	<input type="submit" value="save" />
+</form>
+{% endblock %}

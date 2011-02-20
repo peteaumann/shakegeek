@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head class=tophat>
+	<title>Django Bookmarks |
+		{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/site_media/style.css"
+		type="text/css" />
+	<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script>
+</head>
+
+<body>
+	<table cellpadding=0 cellspacing=0 border=0 bgcolor=white>
+			<td width=20>
+			</td>
+			<td class=shaketales>
+				<table cellpadding=0 cellspacing=0 border=0 bgcolor=white>
+					<tr>
+						<br><td class=shaketales>POWERED</td>
+					</tr>
+					<tr>
+						<td align="center">BY</td>
+					</tr>
+					<tr>
+						<td class=shaketales>POWDER<font size="3"><sup>TM</sup><font size="3"><sub><img src="/site_media/RelivLogo6.jpg" alt="Logo" /></sub></td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table border=0 cellpadding=8 cellspacing=0 width=725> 
+					<tr>
+						<td></td>
+						<td valign=bottom bgcolor=#009999>
+						<p><font size="3" face="Helvetica, Arial" color=WHITE><b>DISCLAIMER:  </b>Reliv makes no claims to diagnose, treat, cure, or prevent any disease.  The personal 
+testimonies shared herein reflect the individual experiences of Independent Reliv Distributors and are not 
+necessarily typical of the results you may obtain.&nbsp&nbspAlso, success as a Reliv Distributor requires a significant
+amount of hard work and dedication and is based upon individual skill and effort.  The business results
+shared herein are examples only and are not intended as averages or guarantees.</font></p>
+						</td>
+					</tr>
+					<tr>
+						<td></td> 
+						{# <td><font size="3" face="Helvetica, Arial" color="#1D6893"><b>BUILD LIST:</b>{{ linkline }}</td>#}
+						<td><font size="2" face="Helvetica, Arial" color=NAVY><b>BUILD LIST:</b>{{ linkline }}</td>
+					</tr>
+				</table>
+			</td>
+			<td width=20>
+			</td>
+			{# <td class=frank> #}
+			{#	<table class=flint cellpadding=0 cellspacing=0 border=0> #}
+			{#		<tr> #}
+			{#			<td class=trialdesc>Help&nbspFund&nbspA Reliv&nbsp/&nbspJDRF Clinical&nbspTrial</td> #}
+			{#		</tr> #}
+			{#		<tr> #}
+			{#			<td class=donate> #}
+			{#				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">  #}
+			{#					<input type="hidden" name="cmd" value="_s-xclick">  #}
+			{#					<input type="hidden" name="hosted_button_id" value="2DMHEX5ZA3KCQ"> #}
+			{#					<input type="image" src="/site_media/DonateBlue12.jpg" border="0" name="submit" alt="We are raising $150,000+ to help fund a clinical trial.">  #}
+			{#					<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"> #}
+			{#				</form> #}
+			{#			</td> #}
+			{#		</td> #}
+			{#	</table> #}
+			{#</td> #}
+			<td class=top> 
+				<img src="/site_media/RIDLogoSmall.gif" alt="Reliv Independent Distributor" />
+			</td> 
+	</table>
+	<div id="dolphincontainer">
+	<div id="dolphinnav">
+	<ul>
+		{% if user.is_authenticated %}
+			{% if user.is_superuser %}
+				<li><a class="{% ifequal menupage "savestory" %}current{% endifequal %}" href="/savestory/"><span>savestory</span></a> </li>
+			{% endif %}
+			<li><a class="{% ifequal menupage "howto" %}current{% endifequal %}" href="/howto/{{ user.username }}/"><span>how-to</span></a></li>
+			<li><a class="{% ifequal menupage "search" %}current{% endifequal %}" href="/search/"><span>search</span></a></li>
+			<li><a class="{% ifequal menupage "storytag" %}current{% endifequal %}" href="/storytag/"><span>tag cloud</span></a></li>
+			<li><a class="{% ifequal menupage "saveplay" %}current{% endifequal %}" href="/saveplay/"><span>submit</span></a></li>
+			<li><a class="{% ifequal menupage "before" %}current{% endifequal %}" href="/beforeafter/?page=before"><span>trends</span></a></li>
+			<li><a class="{% ifequal menupage "jukebox" %}current{% endifequal %}" href="/jukebox/{{ user.username }}/"><span>jukebox</span></a></li>
+			<li><a class="{% ifequal menupage "playlist" %}current{% endifequal %}" href="/saveplaylist/"><span>save playlist</span></a></li>
+			<li><a class="{% ifequal menupage "wall" %}current{% endifequal %}" href="/wall/"><span>wall</span></a></li>
+			{# <li><a class="{% ifequal menupage "user" %}current{% endifequal %}" href="/user/{{ user.username }}/"><span> #}
+			{#	{{ user.username }}</span></a></li> #}
+			<li><a class="{% ifequal menupage "feedback" %}current{% endifequal %}" href="/savefeedback/"><span>contact us</span></a></li>
+			<li><a class="{% ifequal menupage "logout" %}current{% endifequal %}" href="/logout/"><span>logout</span></a></li>
+		{% else %}
+			<li><a class="{% ifequal menupage "register" %}current{% endifequal %}" href="/register/"><span>register</span></a></li>
+			<li><a class="{% ifequal menupage "login" %}current{% endifequal %}" href="/login/"><span>login</span></a></li>
+		{% endif %}
+	</ul>
+	</div>
+	</div>
+	{% if tag_name %}
+		<table>
+			<tr>
+				<td colspan=5 class="storyhead"></td>
+				<td colspan=2 width=100% class="storyhead">STORY&nbsp&nbspLIST&nbsp&nbsp:&nbsp&nbsp{{ tagline }}</td>
+				<td colspan=4 class="storypage">				
+					{% if show_paginator %}
+						{% if has_prev %}
+							<a href="?page={{ prev_page }}">&laquo; Prev</a>
+						{% endif %}
+						{% if has_next %}
+							<a href="?page={{ next_page }}">Next &raquo;</a>
+						{% endif %}
+						(Page {{ page }} of {{ pages }})
+					{% endif %}
+				</td>
+			</tr>
+	{% endif %}
+	{% block head %}{% endblock %}
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	{% block content %}{% endblock %}
+</body>
+</html>

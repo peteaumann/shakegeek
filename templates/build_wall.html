@@ -1,0 +1,63 @@
+{% if storys %}
+	<table border=0 class="wall" bgcolor=#EAF3F8 cellpadding=5 cellspacing=3>
+		{% for bricktype, offset, fullname, place, audio, sharecode,brickcolor in zipped %} 
+			{% ifequal bricktype 0 %}
+				<tr>
+			{% endifequal %}
+			{% ifequal bricktype 1 %}
+					<td width={{ brickwide }} bgcolor=TURQUOISE></td>
+			{% endifequal %}			
+			{% ifequal bricktype 2 %}
+				<td colspan=4 bgcolor="1D6893"></td>
+			{% endifequal %}
+			{% ifequal bricktype 3 %}
+				</tr>
+			{% endifequal %}
+			{% ifequal bricktype 4 %}
+				{% ifequal brickcolor 1 %}
+					<td class="listed" colspan=4>
+					{{ sharecode }}&nbsp&nbsp<a class="alist" href="/linkline/?sharecode={{ sharecode }}">LIST+/-</a>&nbsp&nbsp<a href="/subbrick/?sharecode={{ sharecode }}">WALL-</a>
+				{% endifequal %}
+				{% ifequal brickcolor 0 %}
+					<td class="walled" colspan=4>
+					{{ sharecode }}&nbsp&nbsp<a class="awall" href="/linkline/?sharecode={{ sharecode }}">LIST+/-</a>&nbsp&nbsp<a href="/subbrick/?sharecode={{ sharecode }}">WALL-</a>
+				{% endifequal %}
+					<br>{{ fullname }}<br>
+					{{ place }}<br>
+					{# <object style="display:none" type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="190" height="25">  #}
+					<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="190" height="25">  
+					  	<param name="wmode" value="transparent" />  
+					 	<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  
+					 	{# <param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" />  #}
+					 	<param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" /> 
+					 	<p>Texte alternatif</p> 
+					</object>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				</td>
+			{% endifequal %}
+			{% ifequal bricktype 5 %}
+				{# EAF3F8 #}
+				{#<td class="spacers" height=1 width={{ brickwide }} bgcolor="#EAF3F8">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>#}
+				<td class="spacers" height=1 width={{ brickwide }} bgcolor="#EAF3F8">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+			{% endifequal %}
+			{% ifequal bricktype 6 %}
+				<td colspan=5 bgcolor=TURQUOISE></td>
+				<td class="wob" colspan=7 bgcolor="EAF3F8">WALL&nbsp&nbspOF&nbsp&nbspBELIEF
+					<td class="wallpage" colspan=5> 
+					{% if show_paginator %}
+							{% if has_prev %}
+								<a href="/wall/?page={{ prev_page }}">&laquo;&nbspPrev&nbsp</a>
+							{% endif %}
+							{% if has_next %}
+								<a href="/wall/?page={{ next_page }}">&nbspNext&nbsp&raquo;</a>
+							{% endif %}
+							({{ page }} of {{ pages }})
+					{% endif %}
+					</td> 
+				</td>
+			{% endifequal %}
+
+		{% endfor %}
+	</table>
+{% else %}
+	<p>No stories found on wall.</p>
+{% endif %}

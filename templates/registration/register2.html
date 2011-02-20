@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}User Registration{% endblock %}
+{% block head %}User Registration{% endblock %}
+{% block content %}
+	<table>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		<td width=120 height=10>
+			PLAYLIST:
+		</td>
+		{% for story in storys %}
+			<td width=120 height=10>
+				<OBJECT classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"
+					width="135" height="65">
+					<param name="type" value="audio/x-pn-realaudio-plugin">
+					<param name="src" value="C:\ChaosCanyon\Reliv\Jukebox\Transcribed\{{ story }}">
+					<param name="autostart" value="false">
+					<param name="controls" value="playbutton volume">
+					<EMBED src="C:\ChaosCanyon\Reliv\Jukebox\Transcribed\{{ story }}" width="135" height="65"
+						controls="playbutton volume" type="audio/x-pn-realaudio-plugin" autostart="false"> 
+					</EMBED>
+				</OBJECT>
+			</td>
+		{% endfor %}
+	</table>
+{% endblock %}

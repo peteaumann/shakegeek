@@ -1,0 +1,40 @@
+{% if storys %}
+	<table class="wall" bgcolor=#EAF3F8 cellpadding=5 cellspacing=3>
+		{% for bricktype, offset, story, place, audio, sharecode in zipped %} 
+			{% ifequal bricktype 0 %}
+				<tr>
+			{% endifequal %}
+			{% ifequal bricktype 1 %}
+					<td width={{ brickwide }} bgcolor=TURQUOISE></td>
+			{% endifequal %}			
+			{% ifequal bricktype 2 %}
+				<td colspan=2 bgcolor="1D6893"></td>
+			{% endifequal %}
+			{% ifequal bricktype 3 %}
+				</tr>
+			{% endifequal %}
+			{% ifequal bricktype 4 %}
+				<td class="fred" colspan=2 bgcolor=TURQUOISE>{{ story }}<br>
+					{{ place }}&nbsp&nbsp&nbsp&nbsp<a href="/linkline/?sharecode={{ sharecode }}">[+/-]</a>&nbsp&nbsp<a href="/nixbrick/?sharecode={{ sharecode }}">[-]</a><br>
+					<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="200" height="25">  
+					  	<param name="wmode" value="transparent" />  
+					 	<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  
+					 	{# <param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=666666&amp;textcolor=0&amp;showvolume=1" />  #}
+					 	<param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;textcolor=0&amp;showvolume=1" /> 
+					 	<p>Texte alternatif</p> 
+					</object> 
+					
+				</td>
+			{% endifequal %}
+			{% ifequal bricktype 5 %}
+				<td class="spacers" width={{ brickwide }} bgcolor="EAF3F8">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td>
+			{% endifequal %}
+			{% ifequal bricktype 6 %}
+				<td class="wob" colspan=9 bgcolor="EAF3F8">WALL&nbsp&nbspOF&nbsp&nbspBELIEF</td>
+			{% endifequal %}
+
+		{% endfor %}
+	</table>
+{% else %}
+	<p>No stories found on wall.</p>
+{% endif %}

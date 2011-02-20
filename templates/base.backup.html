@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>Django Bookmarks |
+		{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/site_media/style.css"
+		type="text/css" />
+</head>
+
+<body>
+	<table>
+			<td><img src="/site_media/RelivLogo.jpg" alt="Logo" /></td>
+			<td>
+				<table cellpadding=10 cellspacing=0> 
+					<tr>
+						<td></td>
+						<td bgcolor=TURQUOISE>
+						<PRE><font size="3" face="Helvetica, Arial" color="maroon"><b>DISCLAIMER:  </b>Reliv makes no claims to treat, cure, diagnose or prevent any condition or disease.
+	            Personal testimonies shared herein reflect individual experiences of Independent 
+	            Reliv Distributors and are not necessarily typical of the results you may obtain.</font></PRE>
+						</td>
+					</tr>
+					<tr>
+						<td width=60></td>
+						<td><b>PLAYLIST:{{ linkline }}</b></td>
+					</tr>
+				</table>
+			</td>	
+	</table>
+	<div id="nav">
+		{% if user.is_authenticated %}
+			{% if user.is_superuser %}
+				<a href="/savestory/">savestory</a> |
+			{% endif %}
+			<a href="/storytag/">storytag</a> |
+			<a href="/saveplay/">submit</a> |
+			<a href="/playlists/{{ user.username }}/">playlists</a> |
+			<a href="/wall/{{ user.username }}/">wall</a> |
+			<a href="/jukebox/">jukebox</a> |
+			<a href="/search/">search</a> |
+			<a href="/user/{{ user.username }}/">
+				{{ user.username }}</a> |
+			<a href="/logout/">logout</a>
+		{% else %}
+			{% if user.is_anonymous %}
+				<a href="/register/">register</a>
+				<a href="/login/">login</a> |
+				<a href="/storytag/">storytag</a> |
+				<a href="/jukebox/">jukebox</a> |
+				<a href="/logout/">logout</a>
+			{% endif %}
+		{% endif %}
+	</div>
+	<h1>{% block head %}{% endblock %}</h1>
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	{% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% if storys %}
+	<table class="storys">
+		{% for story in storys %}
+			<tr>
+				<td width=120 height=10>
+					<OBJECT classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"
+						width="135" height="65">
+						<param name="type" value="audio/x-pn-realaudio-plugin">
+						<param name="src" value="{{ story.audiofile.url }}">
+						<param name="autostart" value="false">
+						<param name="controls" value="playbutton volume">
+						<EMBED src="{{ story.audiofile.url }}" width="135" height="65"
+							controls="playbutton volume" type="audio/x-pn-realaudio-plugin" autostart="false"> 
+						</EMBED>
+					</OBJECT>
+				</td>
+			</tr>
+			user = User.objects.get(email=email)
+			first_name = user.first_name
+			last_name = user.last_name
+			story = Story.objects.get(user_id=user.user_id)
+			sharecode = story.sharecode
+			place = story.place
+			level = story.level
+			rcn = story.rcn
+			phone1 = story.phone1
+			phone2 = story.phone2
+			status = story.status
+			contact_methods = story.contact_methods
+			contact_notes = story.contact_notes
+			audiofile = story.audiofile
+			length = story.length		
+			tags = ' '.join(
+				tag.name for tag in story.tag_set.all()
+			<td>
+				{{ story.length }}
+			</td>
+			<td>
+				{{ story.sharecode }}
+			</td>
+			<td>
+				{{ user.first_name }}
+			</td>
+			<td>
+				{{ user.last_name }}
+			</td>
+			<td>
+				{{ story.place }}
+			</td>
+			<td>
+				{{ story.email }}
+			</td>
+			<td>
+				{{ story.phone1 }}
+			</td>
+			<td>
+				{{ story.phone2 }}
+			</td>
+			<td>
+				{{ story.contact_methods }}
+			</td>
+			<td>
+				{{ story.contact_notes }}
+			</td>
+			<td>
+				<a href="{{ bookmark.link.url }}" class="title">
+					{{ story.sharecode }}</a>
+			</td>
+			<td>
+				<a href="{{ bookmark.link.url }}" class="title">
+					{{ story.sharecode }}</a>
+			</td>
+			<td>
+				<a href="{{ bookmark.link.url }}" class="title">
+					{{ story.sharecode }}</a>
+			</td>
+			{% if show_edit %}
+				<a href="/save/?url={{ bookmark.link.url|urlencode }}"
+					class="edit">[edit]</a>
+			{% endif %}
+			<br />
+			{% if show_tags %}
+				Tags:
+				{% if bookmark.tag_set.all %}
+					<ul class="tags">
+					{% for tag in bookmark.tag_set.all %}
+						<li><a href="/tag/{{ tag.name|urlencode }}/">
+							{{ tag.name }}</a></li>
+					{% endfor %}
+					</ul>
+				{% else %}
+					None.
+				{% endif %}
+				<br />
+			{% endif %}
+			{% if show_user %}
+				Posted by:
+				<a href="/user/{{ bookmark.user.username }}/"
+					class="username">
+					{{ bookmark.user.username }}</a>
+			{% endif %}
+		{% endfor %}
+	</table>
+	{% if show_paginator %}
+		<div class="paginator">
+			{% if has_prev %}
+				<a href="?page={{ prev_page }}">&laquo; Previous</a>
+			{% endif %}
+			{% if has_next %}
+				<a href="?page={{ next_page }}">Next &raquo;</a>
+			{% endif %}
+			(Page {{ page }} of {{ pages }})
+		</div>
+	{% endif %}
+{% else %}
+	<p>No bookmarks found.</p>
+{% endif %}

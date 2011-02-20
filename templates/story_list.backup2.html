@@ -1,0 +1,105 @@
+{% if storys %}
+	<table class="storys">
+		{% if user.is_superuser %}	
+			<th align=left>Tag: {{ tagname }}</th><th align=left>Time</th><th align=left>Line</th><th align=left>Sharecode</th><th align=left>Wall</th><th align=left>First</th><th align=left>Last</th><th align=left>Location</th><th align=left>RCN</th><th align=left>Phone One</th><th align=left>Phone Two</th><th align=left>L</th><th align=left>S</th><th align=left>Email Address</th>
+		{% else %}
+			{% if user.is_authenticated %}
+				<th align=left>Tag: {{ tagname }}</th><th align=left>Time</th><th align=left>Line</th><th align=left>Sharecode</th><th align=left>Wall</th><th align=left>First</th><th align=left>Last</th><th align=left>Location</th><th align=left>RCN</th><th align=left>Phone One</th><th align=left>Phone Two</th><th align=left>L</th><th align=left>S</th><th align=left>Email Address</th>
+			{% else %}
+				<th align=left>Tag: {{ tagname }}</th><th align=left>Time</th><th align=left>Line</th><th align=left>Sharecode</th><th align=left>Wall</th><th align=left>First</th><th align=left>Last</th><th align=left>Location</th><th align=left>RCN</th><th align=left>Phone One</th><th align=left>Phone Two</th><th align=left>L</th><th align=left>S</th><th align=left>Email Address</th>
+			{% endif %}
+		{% endif %}	
+		{% for story in storys %}
+			<tr>
+				<td width=120 height=10>	
+					{# <object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="200" height="20">  #}
+					{# 	<param name="wmode" value="transparent" />  #}
+					{# 	<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  #}
+					{# 	<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;bgcolor1=ffffff&amp;bgcolor2=cccccc&amp;buttoncolor=999999&amp;buttonovercolor=0&amp;slidercolor1=cccccc&amp;slidercolor2=999999&amp;sliderovercolor=666666&amp;textcolor=0&amp;showvolume=1" /> #}  
+					{# 	<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;bgcolor1=1D6893&amp;bgcolor2=1D6893&amp;buttoncolor=ADEAEA&amp;buttonovercolor=0&amp;slidercolor1=ADEAEA&amp;slidercolor2=ADEAEA&amp;sliderovercolor=666666&amp;textcolor=0&amp;showvolume=10" />  #}
+					{# 	<p>Texte alternatif</p> #}
+					{# </object> #}
+					<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}//audio/player_mp3_maxi.swf" width="25" height="20">
+						<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />
+						<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;showslider=0&amp;width=25" />
+					</object>
+				</td>
+				{# <td width=120 height=10>														#}
+				{#	<OBJECT classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"			#}
+				{#		width="120" height="50">									#}
+				{#		<param name="type" value="audio/x-pn-realaudio-plugin">				#}
+				{#		<param name="src" value="{{ story.audiofile.url }}">					#}
+				{#		<param name="autostart" value="false">							#}
+				{#		<param name="controls" value="playbutton volume">					#}
+				{#		<EMBED src="{{ story.audiofile.url }}" width="120" height="50"			#}
+				{#			controls="playbutton volume" type="audio/x-pn-realaudio-plugin" autostart="false"> 	#}
+				{#		</EMBED>															#}
+				{#	</OBJECT>  #}
+				<td>
+					{{ story.length }}
+				</td>
+				<td>
+					<a href="/linkline/?sharecode={{ story.sharecode|urlencode }}">(+/-)</a>
+				</td>
+				<td>
+					<a href="/savestory/?sharecode={{ story.sharecode|urlencode }}">{{ story.sharecode }}</a>
+				</td>
+				<td>
+					<a href="/modifywall/?sharecode={{ story.sharecode|urlencode }}">(+/-)</a>
+				</td>
+				<td>
+					{{ story.first_name }}
+				</td>
+				<td>
+					{{ story.last_name }}
+				</td>
+				<td>
+					{{ story.place }}
+				</td>
+				{% if user.is_superuser %}				
+					<td>
+						<a href="{{ bookmark.link.url }}" class="title">
+							{{ story.rcn }}</a>
+					</td>
+					<td>
+						{{ story.phone1 }}
+					</td>
+					<td>
+						{{ story.phone2 }}
+					</td>
+					<td>
+						{{ story.level }}
+					</td>
+					<td>
+						{{ story.status }}
+					</td>
+					<td>
+						{{ story.email }}
+					</td>
+				{% else %}
+					<td>
+						
+				{% endif %}
+				<td>
+					{% if show_edit %}
+						<a href="/save/?url={{ story.link.url|urlencode }}"
+							class="edit">[edit]</a>
+					{% endif %}
+				<td>
+			</tr>			
+		{% endfor %}
+	</table>
+	{% if show_paginator %}
+		<div class="paginator">
+			{% if has_prev %}
+				<a href="?page={{ prev_page }}">&laquo; Previous</a>
+			{% endif %}
+			{% if has_next %}
+				<a href="?page={{ next_page }}">Next &raquo;</a>
+			{% endif %}
+			(Page {{ page }} of {{ pages }})
+		</div>
+	{% endif %}
+{% else %}
+	<p>No bookmarks found.</p>
+{% endif %}

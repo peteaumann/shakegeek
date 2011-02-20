@@ -1,0 +1,79 @@
+{% load mod %}
+{% if storys %}
+	{# <table class="storys">  #}
+		{% if user.is_superuser %}
+				<th class=headers>Play</th><th class=headers>Time</th><th class=headers>Link</th><th class=headers>Sharecode</th><th class=headers>Wall</th><th width=50 class=headers>Name</th><th class=headers>Location</th><th class=headers>RCN</th><th class=headers>Phone #1</th><th class=headers>Phone #2</th><th class=headers>S</th>
+		{% else %}
+			{% if user.is_authenticated %}
+				<th align=left>Tag: {{ tagname }}</th><th align=left>Time</th><th align=left>Link</th><th align=left>Sharecode</th><th align=left>Wall</th><th align=left>First</th><th align=left>Last</th><th align=left>Location</th><th align=left>RCN</th><th align=left>Phone One</th><th align=left>Phone Two</th><th align=left>L</th><th align=left>S</th><th align=left>Email Address</th>
+			{% else %}
+				<th align=left>Tag: {{ tagname }}</th><th align=left>Time</th><th align=left>Link</th><th align=left>Sharecode</th><th align=left>Wall</th><th align=left>First</th><th align=left>Last</th><th align=left>Location</th><th align=left>RCN</th><th align=left>Phone One</th><th align=left>Phone Two</th><th align=left>L</th><th align=left>S</th><th align=left>Email Address</th>
+			{% endif %}
+		{% endif %}	
+		{% for story in storys %}
+			{% if forloop.counter|mod:2 %}
+				<tr class=oddrow>
+			{% else %}
+				<tr class=evenrow>
+			{% endif %}
+					<td height=10>
+						{% if user.is_superuser %}
+							<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="25" height="20">
+								<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />
+								<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;showslider=0&amp;width=25" />
+							</object>
+						{% else %}
+							<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="200" height="20">  
+								<param name="wmode" value="transparent" />  
+								<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  
+							{# 	<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;bgcolor1=ffffff&amp;bgcolor2=cccccc&amp;buttoncolor=999999&amp;buttonovercolor=0&amp;slidercolor1=cccccc&amp;slidercolor2=999999&amp;sliderovercolor=666666&amp;textcolor=0&amp;showvolume=1" /> #}  
+								<param name="FlashVars" value="mp3={{ story.audiofile.url }}&amp;bgcolor1=1D6893&amp;bgcolor2=1D6893&amp;buttoncolor=ADEAEA&amp;buttonovercolor=0&amp;slidercolor1=ADEAEA&amp;slidercolor2=ADEAEA&amp;sliderovercolor=666666&amp;textcolor=0&amp;showvolume=10" />  
+								<p>Texte alternatif</p> 
+							</object>
+						{% endif %}
+					</td>
+					<td>
+						{{ story.length }}
+					</td>
+					<td>
+						<a href="/linkline/?sharecode={{ story.sharecode|urlencode }}">(+/-)</a>
+					</td>
+					<td>
+					{% if user.is_superuser %}	
+						<a href="/savestory/?sharecode={{ story.sharecode|urlencode }}">{{ story.sharecode }}</a>
+					{% else %}
+						{{ story.sharecode }}
+					{% endif %}
+					</td>
+					<td>
+						<a href="/modifywall/?sharecode={{ story.sharecode|urlencode }}">( + )</a>
+					</td>
+					<td class=fullname>
+						{{ story.first_name }}&nbsp{{ story.last_name }}
+					</td>
+					<td class=location>
+						{{ story.place }}
+					</td>
+					{% if user.is_superuser %}				
+						<td>
+							<a href="{{ bookmark.link.url }}" class="title">
+								{{ story.rcn }}</a>
+						</td>
+						<td>
+							{{ story.phone1 }}
+						</td>
+						<td>
+							{{ story.phone2 }}
+						</td>
+						<td>
+							{{ story.status }}
+						</td>
+					{% else %}
+						<td>
+					{% endif %}
+			</tr>			
+		{% endfor %}
+	</table>
+{% else %}
+	<p>No bookmarks found.</p>
+{% endif %}

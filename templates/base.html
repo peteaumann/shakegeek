@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head class=tophat>
+	<title>SHAKE GEEK |
+		{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="/site_media/style.css"
+		type="text/css" />
+	<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script>
+</head>
+
+<body>
+	<table cellpadding=0 cellspacing=0 border=0 bgcolor=white>
+			<td width=30>
+			</td>
+			<td class=top> 
+				<img src="/site_media/PeteCartoon30.jpg" alt="The Shake Geek" />
+			</td> 
+			<td>
+				<table border=0 cellpadding=8 cellspacing=0 width=735> 
+					<tr>
+						<td bgcolor=white width=0></td>
+						<td valign=bottom bgcolor=#009999>
+						<p><font size="3" face="Helvetica, Arial" color=WHITE><b>OPINION ALERT:</b>&nbsp&nbspThe insights, suggestions and opinions shared herein reflect the personal thoughts of the author
+and should not be construed as professional advice in any way, shape or form.&nbsp&nbspPlease consult your upline 
+when it comes to guidance on building your network marketing business.&nbsp&nbspIn addition, success as a network marketer requires a significant
+amount of hard work and dedication and is based upon individual skill, creativity and effort.&nbsp&nbspAny business results
+shared herein should be viewed as personal goals, samples or examples only and are not intended as averages or guarantees.</font></p>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td width=20>
+			</td>
+			<td class=top> 
+				<img src="/site_media/RIDLogoSmall.gif" alt="Independent Reliv Distributor" />
+			</td> 
+	</table>
+	<div id="dolphincontainer">
+	<div id="dolphinnav">
+	<ul>
+		<li><a class="{% ifequal menupage "home" %}current{% endifequal %}" href="/home/"><span>home</span></a></li>
+		<li><a class="{% ifequal menupage "guidelines" %}current{% endifequal %}" href="/guidelines/"><span>guidelines</span></a></li>
+		<li><a class="{% ifequal menupage "storycapture" %}current{% endifequal %}" href="/storycapture/"><span>capture</span></a></li>
+		<li><a class="{% ifequal menupage "feedback" %}current{% endifequal %}" href="/feedback/"><span>feedback</span></a></li>
+	</ul>
+	</div>
+	</div>
+	{% block head %}{% endblock %}
+	{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+				<li>{{ message }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	{% block content %}{% endblock %}
+</body>
+</html>

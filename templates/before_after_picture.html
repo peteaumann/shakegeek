@@ -1,0 +1,122 @@
+<table border=0>
+	<tr>
+		<td colspan=1 class="beforeafter">&nbsp</td>
+		{% ifequal page "before" %}
+			<td colspan=2 class="bfa">CGM Trace [Before Reliv]
+		{% endifequal %}
+		{% ifequal page "after1" %}
+			<td colspan=2 class="bfa">CGM Trace [After 1 Month]
+		{% endifequal %}
+		{% ifequal page "after3" %}
+			<td colspan=2 class="bfa">CGM Trace [After 3 Months]
+		{% endifequal %}
+		{% ifequal page "after5" %}
+			<td colspan=2 class="bfa">CGM Trace [After 5 Months]
+		{% endifequal %}
+		</td>
+		<td colspan=2 class="bfapage">
+			<a href="/beforeafter/?page=before">Before&nbsp</a>
+			<a href="/beforeafter/?page=after1">After1&nbsp</a>
+			<a href="/beforeafter/?page=after3">After3&nbsp</a>
+			<a href="/beforeafter/?page=after5">After5</a>
+		</td>
+	<tr>
+	</tr>
+		<td colspan=5 class="bca">
+			<div class="container" style="position: relative"> 
+			{% ifequal page "before" %}
+				<img style="z-index: 32; left: 1px; position: relative;" alt="Before Reliv" src="/site_media/before.gif"> 
+			{% endifequal %}
+			{% ifequal page "after1" %}
+				<img style="z-index: 32; left: 1px; position: relative;" alt="After 1 month on Reliv" src="/site_media/after1.gif"> 
+			{% endifequal %}
+			{% ifequal page "after3" %}
+				<img style="z-index: 32; left: 1px; position: relative;" alt="After 3 months on Reliv" src="/site_media/after3.gif"> 
+			{% endifequal %}
+			{% ifequal page "after5" %}
+				<img style="z-index: 32; left: 1px; position: relative;" alt="After 5 months on Reliv" src="/site_media/after5.gif"> 
+			{% endifequal %}
+				<div style="z-index: 45; left: 83px; position: absolute; top: 6px"> 
+					<img alt="top image" src="/site_media/blackout5.jpg">
+				</div>
+				{# <div style="z-index: 31; left: 83px; position: absolute; top: 6px">#}
+				{#	<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="190" height="25">  #}
+				{#		<param name="wmode" value="transparent" />  #}
+				{#		<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  #}
+				{#		<param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" />  #}
+				{#		<param name="FlashVars" value="mp3="C:\ChaosCanyon\MP3\07_Face_To_Face.mp3{{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" /> #}
+				{#		<param name="FlashVars" value="mp3=http://localhost:8000/site_media/audio/05_If_You_re_Gonna_Play_In_Texas_You_Gotta_Have_A_Fiddle_In_The_Band_______.mp3&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1&amp;textcolor=0&amp;autoplay=0" /> #}
+				{#		<p>Texte alternatif</p>						#}
+				{#	</object>#}
+				{#</div>#}
+				</div style="z-index: 30; left: 83px; position: absolute; top: 6px">
+					<OBJECT style="display:none" classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"
+						width="120" height="55">
+						<param name="type" value="audio/x-pn-realaudio-plugin">
+						<param name="src" value="C:\ChaosCanyon\Reliv\Jukebox\WERN-JANIRAE2.WAV">
+						<param name="autostart" value="true">
+						<param name="hidden" value="true">
+						<param name="controls" value="playbutton volume">
+						<EMBED src="C:\ChaosCanyon\Reliv\Jukebox\WERN-JANIRAE2.WAV" width="200" height="70"
+							controls="playbutton volume" type="audio/x-pn-realaudio-plugin" autostart="false"> 
+						</EMBED>
+					</OBJECT>
+				</div>
+			</div>
+		</td>	
+	</tr>	
+	<tr>
+	{% ifequal page "before" %}
+		<td class="bgb">In Range (60-170):  44.2%<br>(10.6 hrs/day)</td>
+		<td class="bgb">Blood Glucose Average:  189.2</td>
+		<td class="bgb"> Low (< 60): 1.2%  (17.3&nbspmin/day)</td>
+		<td class="bga">Audio:<br>Details&nbsp&nbsp</td>
+		<td class="bgb">	{% endifequal %}
+	{% ifequal page "after1" %}
+		<td class="bgb">In Range (60-170):  63.0%<br>(15.1 hrs/day)</td>
+		<td class="bgb">Blood Glucose Average:  163.4</td>
+		<td class="bgb"> Low (< 60): 0.0%  (0.0&nbspmin/day)</td>
+		<td class="bga">Audio:<br>Details&nbsp&nbsp</td>
+		<td class="bgb">	{% endifequal %}
+	{% ifequal page "after3" %}
+		<td class="bgb">In Range (60-170):  59.9%<br>(14.4 hrs/day)</td>
+		<td class="bgb">Blood Glucose Average:  146.9</td>
+		<td class="bgb"> Low (< 60): 5.9%  (85.0&nbspmin/day)</td>
+		<td class="bga">Audio:<br>Details&nbsp&nbsp</td>
+		<td class="bgb">	{% endifequal %}
+	{% ifequal page "after5" %}
+		<td class="bgb">In Range (60-170):  84.5%<br>(20.3 hrs/day)</td>
+		<td class="bgb">Blood Glucose Average:  129.2</td>
+		<td class="bgb"> Low (< 60): 0.5%  (7.2&nbspmin/day)</td>
+		<td class="bga">Audio:<br>Details&nbsp&nbsp</td>
+		<td class="bgb">
+	{% endifequal %}
+			{#<object type="application/x-shockwave-flash" data="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" width="190" height="25">  #}
+			{#	<param name="wmode" value="transparent" />  #}
+			{#	<param name="movie" value="{{ MEDIA_URL }}/audio/player_mp3_maxi.swf" />  #}
+			{#	<param name="FlashVars" value="mp3={{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" />  #}
+			{#	<param name="FlashVars" value="mp3="C:\ChaosCanyon\MP3\07_Face_To_Face.mp3{{ audio }}&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1" /> #}
+			{#	<param name="FlashVars" value="mp3=http://localhost:8000/site_media/audio/05_If_You_re_Gonna_Play_In_Texas_You_Gotta_Have_A_Fiddle_In_The_Band_______.mp3&amp;bgcolor1=EAF3F8&amp;bgcolor2=1D6893&amp;buttoncolor=1D6893&amp;buttonovercolor=0&amp;slidercolor1=1D6893&amp;slidercolor2=1D6893&amp;sliderovercolor=0&amp;textcolor=0&amp;showvolume=1&amp;textcolor=0&amp;autoplay=1" /> #}
+			{#	<p>Texte alternatif</p> #}
+			{#</object>#}
+			{#<OBJECT classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"#}
+			{#	width="120" height="55">#}
+			{#	<param name="type" value="audio/x-pn-realaudio-plugin">#}
+			{#	<param name="src" value="C:\ChaosCanyon\Reliv\Jukebox\WERN-JANIRAE2.WAV">#}
+			{#	<param name="autostart" value="false">#}
+			{#	<param name="controls" value="playbutton volume">#}
+			{#	<EMBED src="C:\ChaosCanyon\Reliv\Jukebox\WERN-JANIRAE2.WAV" width="200" height="70"#}
+			{#		controls="playbutton volume" type="audio/x-pn-realaudio-plugin" autostart="false"> #}
+			{#	</EMBED>#}
+			{#</OBJECT>#}
+		</td>
+	</tr>
+	{#<tr>#}
+	{#	<object type="application/x-shockwave-flash" data="http://widgets.nbc.com/o/4727a250e66f9723/48f3635c8c383a6f/4741e3c5156499a7/5488a618/-cpid/60ebae8d21baa7ed" id="W4727a250e66f972348f3635c8c383a6f" width="384" height="283"><param name="movie" value="http://widgets.nbc.com/o/4727a250e66f9723/48f3635c8c383a6f/4741e3c5156499a7/5488a618/-cpid/60ebae8d21baa7ed" /><param name="wmode" value="transparent" /><param name="allowNetworking" value="all" /><param name="allowScriptAccess" value="always" /></object><br clear="all" /><br clear="all" />#}
+	{# </tr>#}
+	{#<tr>#}
+	{#	<td colspan=3 width=800>#}
+	{#		<iframe width="900" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?hl=en&amp;ie=UTF8&amp;msa=0&amp;msid=115507110882967023031.00047fd1074686cd94d57&amp;ll=45.408297,-102.98584&amp;spn=6.24572,39.858398&amp;output=embed"></iframe><br /><small>View <a href="http://maps.google.com/maps/ms?hl=en&amp;ie=UTF8&amp;msa=0&amp;msid=115507110882967023031.00047fd1074686cd94d57&amp;ll=45.408297,-102.98584&amp;spn=6.24572,39.858398&amp;source=embed" style="color:#0000FF;text-align:left">Reliv Roadtrip</a> in a larger map</small>#}
+	{#	</td>	#}
+	{#</tr>#}	
+</table>

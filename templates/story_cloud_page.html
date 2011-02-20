@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Story Cloud{% endblock %}
+{% block content %}
+	<div id="storytag-cloud">
+		{% for storytag in storytags %}
+			<a href="/storytag/{{ storytag.name|urlencode }}/"
+				class="story-tag-cloud-{{ storytag.weight }}">
+				{{ storytag.name }}</a><sup>{{ storytag.count }}</sup>
+		{% endfor %}
+	</div>
+{% endblock %}

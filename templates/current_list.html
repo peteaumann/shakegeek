@@ -1,0 +1,6 @@
+{% if current %}
+	current_list = ' '.join(sharecode for sharecode in current)
+{% else %}
+	current_list = ['None']
+{% endif %}
+	Current Playlist: "%s" % current_list
