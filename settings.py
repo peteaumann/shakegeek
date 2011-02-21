@@ -65,6 +65,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+#CHANGED HERE
 ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
