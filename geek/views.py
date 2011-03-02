@@ -536,7 +536,7 @@ def bookmark_save_page(request):
 	})
 	return render_to_response('bookmark_save.html', {}, variables)
 	
-@login_required
+#@login_required
 def story_save_page(request):
 	linkline = request.session['linkline']
 	page = 'savestory'
